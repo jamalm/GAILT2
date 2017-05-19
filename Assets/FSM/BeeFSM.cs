@@ -70,11 +70,13 @@ public class BeeFSM : MonoBehaviour
     {
         foreach (GameObject f in flowers)
         {
-            if(f.GetComponent<Flower>().alive)
+            
+            if(f.activeInHierarchy || f.GetComponent<Flower>().alive)
             {
                 if (flower == null)
                 {
-                    flower = f.GetComponent<Flower>();
+                    //random flower
+                    flower = flowers[Random.Range(0, flowers.Length-1)].GetComponent<Flower>();
                 }
                 else if (Vector3.Distance(f.transform.position, transform.position) < Vector3.Distance(flower.transform.position, transform.position))
                 {
